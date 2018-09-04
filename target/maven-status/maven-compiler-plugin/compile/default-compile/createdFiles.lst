@@ -1,0 +1,4 @@
+com\rem\fortune\service\impl\CustomerSupplierServiceImpl.class
+com\rem\fortune\service\CustomerSupplierService.class
+com\rem\fortune\FortuneWS.class
+com\rem\fortune\ws\CustomerSupplierWS.class
