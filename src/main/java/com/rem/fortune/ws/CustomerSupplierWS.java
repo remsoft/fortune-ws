@@ -1,7 +1,11 @@
 package com.rem.fortune.ws;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,12 +17,23 @@ import com.rem.fortune.service.CustomerSupplierService;
 @RestController
 public class CustomerSupplierWS {
 	@Autowired	
-	private CustomerSupplierService custSuppService;
+	private CustomerSupplierService customerSupplierService;
 
-	@RequestMapping(value="/CustSuppQuery/{id}",method=RequestMethod.GET)
+	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080" })
+	@RequestMapping(value="/getcustsup/{id}",method=RequestMethod.GET)
 	@ResponseBody
 	public CustomerSupplier getCustomerSupplier(@PathVariable("id") String id) {
-		return custSuppService.getCustomerSupplier(id);
+		return customerSupplierService.getCustomerSupplier(id);
+	}
+	
+	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
+	@RequestMapping(value="/createcustsup",method=RequestMethod.POST)
+	@ResponseBody
+	public CustomerSupplier createCustomerSupplier(@RequestBody CustomerSupplier custSupp) {
+		customerSupplierService.createCustomerSupplier(custSupp);
+		System.out.println(custSupp.toString());
+		return custSupp;
+		
 	}
 
 
