@@ -15,7 +15,7 @@ public class CustomerSupplierServiceImpl implements CustomerSupplierService{
 		return supplierDao.getSupplierById(id);
 	}
 
-	public String createCustomerSupplier(CustomerSupplier custSupp) {
+	public int createCustomerSupplier(CustomerSupplier custSupp) {
 		return supplierDao.createSupplier(custSupp);
 	}
 }

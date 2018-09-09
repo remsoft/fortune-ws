@@ -4,6 +4,6 @@ import com.rem.fortune.model.CustomerSupplier;
 
 public interface CustomerSupplierService {
 	public CustomerSupplier getCustomerSupplier(String id);
-	public String createCustomerSupplier(CustomerSupplier custSupp);
+	public int createCustomerSupplier(CustomerSupplier custSupp);
 	
 }
