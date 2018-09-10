@@ -1,5 +1,7 @@
 package com.rem.fortune.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +20,12 @@ public class CustomerSupplierServiceImpl implements CustomerSupplierService{
 	public int createCustomerSupplier(CustomerSupplier custSupp) {
 		return supplierDao.createSupplier(custSupp);
 	}
+
+	@Override
+	public List<CustomerSupplier> getAllCustomerSupplier(int isCustomer) {
+		return supplierDao.getCustomerSupplierAll(isCustomer);
+	}
+	
+	
+	
 }
