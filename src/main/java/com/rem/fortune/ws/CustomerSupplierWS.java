@@ -3,8 +3,9 @@ package com.rem.fortune.ws;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,16 +24,15 @@ public class CustomerSupplierWS {
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080" })
 	@RequestMapping(value="/getcustsup",method=RequestMethod.GET)
 	@ResponseBody
-	public CustomerSupplier getCustomerSupplier(@RequestParam(value="id") String id) {
-		return customerSupplierService.getCustomerSupplier(id);
+	public CustomerSupplier getById(@RequestParam(value="id") String id) {
+		return customerSupplierService.getById(id);
 	}
 	
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
 	@RequestMapping(value="/createcustsup",method=RequestMethod.POST)
 	@ResponseBody
-	public CustomerSupplier createCustomerSupplier(@RequestBody CustomerSupplier custSupp) {
-		customerSupplierService.createCustomerSupplier(custSupp);
-		System.out.println(custSupp.toString());
+	public CustomerSupplier create(@RequestBody CustomerSupplier custSupp) {
+		customerSupplierService.create(custSupp);
 		return custSupp;
 		
 	}
@@ -40,8 +40,16 @@ public class CustomerSupplierWS {
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
 	@RequestMapping(value="/getcustsupall",method=RequestMethod.GET)
 	@ResponseBody
-	public List<CustomerSupplier> getAllCustomerSupplier(@RequestParam(value="isc") String isCustomer) {
-		return customerSupplierService.getAllCustomerSupplier(Integer.valueOf(isCustomer));
+	public List<CustomerSupplier> getAllSupplier(@RequestParam(value="isc") String isCustomer) {
+		return customerSupplierService.getAllSupplier(Integer.valueOf(isCustomer));
+	}
+	
+	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
+	@RequestMapping(value="/deletecustsupp",method=RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseEntity<String> deleteById(@RequestParam(value="id") int id) {
+		customerSupplierService.deleteById(id);
+		return new ResponseEntity<>("Successfully Deleted", HttpStatus.OK);
 	}
 
 }

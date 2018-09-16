@@ -13,17 +13,22 @@ public class CustomerSupplierServiceImpl implements CustomerSupplierService{
 	@Autowired
 	private SupplierDao supplierDao;
 	
-	public CustomerSupplier getCustomerSupplier(String id) {
-		return supplierDao.getSupplierById(id);
+	public CustomerSupplier getById(String id) { 
+		return supplierDao.getById(Integer.valueOf(id));
 	}
 
-	public int createCustomerSupplier(CustomerSupplier custSupp) {
-		return supplierDao.createSupplier(custSupp);
+	public int create(CustomerSupplier custSupp) {
+		return supplierDao.create(custSupp);
 	}
 
 	@Override
-	public List<CustomerSupplier> getAllCustomerSupplier(int isCustomer) {
-		return supplierDao.getCustomerSupplierAll(isCustomer);
+	public List<CustomerSupplier> getAllSupplier(int isCustomer) {
+		return supplierDao.getAll(isCustomer);
+	}
+
+	@Override
+	public int deleteById(int id) {
+		return supplierDao.deleteById(id);
 	}
 	
 	
