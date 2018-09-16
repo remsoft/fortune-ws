@@ -17,19 +17,20 @@ import com.rem.fortune.model.CustomerSupplier;
 import com.rem.fortune.service.CustomerSupplierService;
 
 @RestController
+@RequestMapping("/custsupp")
 public class CustomerSupplierWS {
 	@Autowired	
 	private CustomerSupplierService customerSupplierService;
 
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080" })
-	@RequestMapping(value="/getcustsup",method=RequestMethod.GET)
+	@RequestMapping(value="/get",method=RequestMethod.GET)
 	@ResponseBody
 	public CustomerSupplier getById(@RequestParam(value="id") String id) {
 		return customerSupplierService.getById(id);
 	}
 	
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
-	@RequestMapping(value="/createcustsup",method=RequestMethod.POST)
+	@RequestMapping(value="/create",method=RequestMethod.POST)
 	@ResponseBody
 	public CustomerSupplier create(@RequestBody CustomerSupplier custSupp) {
 		customerSupplierService.create(custSupp);
@@ -38,14 +39,14 @@ public class CustomerSupplierWS {
 	}
 
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
-	@RequestMapping(value="/getcustsupall",method=RequestMethod.GET)
+	@RequestMapping(value="/getall",method=RequestMethod.GET)
 	@ResponseBody
 	public List<CustomerSupplier> getAllSupplier(@RequestParam(value="isc") String isCustomer) {
 		return customerSupplierService.getAllSupplier(Integer.valueOf(isCustomer));
 	}
 	
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
-	@RequestMapping(value="/deletecustsupp",method=RequestMethod.DELETE)
+	@RequestMapping(value="/delete",method=RequestMethod.DELETE)
 	@ResponseBody
 	public ResponseEntity<String> deleteById(@RequestParam(value="id") int id) {
 		customerSupplierService.deleteById(id);
