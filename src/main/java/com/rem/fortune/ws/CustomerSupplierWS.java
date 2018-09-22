@@ -26,13 +26,7 @@ public class CustomerSupplierWS {
 	@RequestMapping(value="/get",method=RequestMethod.GET)
 	@ResponseBody
 	public CustomerSupplier getById(@RequestParam(value="id") String id) {
-		try {
-			return customerSupplierService.getById(id);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+		return customerSupplierService.getById(id);
 		
 	}
 	
@@ -40,41 +34,22 @@ public class CustomerSupplierWS {
 	@RequestMapping(value="/create",method=RequestMethod.POST)
 	@ResponseBody
 	public CustomerSupplier create(@RequestBody CustomerSupplier custSupp) {
-		try {
-			customerSupplierService.create(custSupp);
-			return custSupp;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+		customerSupplierService.create(custSupp);
+		return custSupp;
 	}
 
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
 	@RequestMapping(value="/getall",method=RequestMethod.GET)
 	@ResponseBody
 	public List<CustomerSupplier> getAllSupplier(@RequestParam(value="isc") String isCustomer) {
-		try {
-			return customerSupplierService.getAllSupplier(Integer.valueOf(isCustomer));
-		}catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+		return customerSupplierService.getAllSupplier(Integer.valueOf(isCustomer));
 	}
 	
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
 	@RequestMapping(value="/delete",method=RequestMethod.DELETE)
 	@ResponseBody
 	public ResponseEntity<String> deleteById(@RequestParam(value="id") int id) {
-		try {
-			customerSupplierService.deleteById(id);
-			return new ResponseEntity<>("Successfully Deleted", HttpStatus.OK);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return new ResponseEntity<>("Fail to Delete", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		return customerSupplierService.deleteById(id);
 
 	}
 
@@ -82,14 +57,7 @@ public class CustomerSupplierWS {
 	@RequestMapping (value="/update",method=RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<String> update(@RequestBody CustomerSupplier custSupp){
-		try {
-			customerSupplierService.update(custSupp);
-			return new ResponseEntity<>("Successfully Updated",HttpStatus.OK);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return new ResponseEntity<>("Fail to Update", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		return customerSupplierService.update(custSupp);
 		
 	}
 }
