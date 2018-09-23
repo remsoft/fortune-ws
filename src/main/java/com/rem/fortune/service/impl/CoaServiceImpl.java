@@ -15,8 +15,24 @@ public class CoaServiceImpl implements CoaService{
 	CoaDao coaDao;
 	
 	@Override
-	public List<Coa> getAllCoa() {
-		return coaDao.getAll();
+	public List<Coa> getAllCoa(String accountType) {
+		int accTypeNo =0;
+		if("all".equals(accountType)) {
+			accTypeNo=0;
+		}else if("asset".equals(accountType)) {
+			accTypeNo=1;
+		}else if("liability".equals(accountType)) {
+			accTypeNo=2;
+		}else if("equity".equals(accountType)) {
+			accTypeNo=3;
+		}else if("expense".equals(accountType)) {
+			accTypeNo=4;
+		}else if("revenue".equals(accountType)) {
+			accTypeNo=5;
+		}else if("archive".equals(accountType)) {
+			accTypeNo=6;
+		}		
+		return coaDao.getAll(accTypeNo);
 	} 
 
 }

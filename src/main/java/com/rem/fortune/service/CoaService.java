@@ -5,6 +5,6 @@ import java.util.List;
 import com.rem.fortune.model.Coa;
 
 public interface CoaService {
-	public List<Coa> getAllCoa();
+	public List<Coa> getAllCoa(String accountType);
 
 }
