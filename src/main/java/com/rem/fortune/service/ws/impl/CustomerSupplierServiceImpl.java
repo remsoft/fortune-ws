@@ -1,4 +1,4 @@
-package com.rem.fortune.service.impl;
+package com.rem.fortune.service.ws.impl;
 
 import java.util.List;
 
@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.rem.fortune.dao.SupplierDao;
 import com.rem.fortune.model.CustomerSupplier;
-import com.rem.fortune.service.CustomerSupplierService;
+import com.rem.fortune.ws.service.CustomerSupplierService;
+import com.rem.fortune.ws.util.FortuneUtil;
 @Service("CustSuppService")
 public class CustomerSupplierServiceImpl implements CustomerSupplierService{
 	@Autowired
@@ -19,8 +20,9 @@ public class CustomerSupplierServiceImpl implements CustomerSupplierService{
 		return supplierDao.getById(Integer.valueOf(id));
 	} 
 
-	public int create(CustomerSupplier custSupp){
-		return supplierDao.create(custSupp);
+	public ResponseEntity create(CustomerSupplier custSupp){
+		int size= supplierDao.create(custSupp);
+		return FortuneUtil.generateWSResponse(size);
 	}
 
 	@Override
@@ -30,23 +32,15 @@ public class CustomerSupplierServiceImpl implements CustomerSupplierService{
 
 	@Override
 	public ResponseEntity deleteById(int id){
-		try {
-			supplierDao.deleteById(id);
-			return new ResponseEntity<>("Successfully Deleted", HttpStatus.OK);
-		}catch (Exception e) {
-			return new ResponseEntity<>("Successfully Deleted", HttpStatus.OK);
-		}
+		int size = supplierDao.deleteById(id);
+		return FortuneUtil.generateWSResponse(size);
 	}
 
 	@Override
 	public ResponseEntity update(CustomerSupplier custSupp){
-		try {
-			int update=supplierDao.updateById(custSupp);
-			supplierDao.updateAddressById(custSupp);
-			return new ResponseEntity<>("Successfully Updated",HttpStatus.OK);
-		}catch(Exception e) {
-			return new ResponseEntity<>("Fail to Update", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		int size=supplierDao.updateById(custSupp);
+		supplierDao.updateAddressById(custSupp);
+		return FortuneUtil.generateWSResponse(size);
 	}
 
 }

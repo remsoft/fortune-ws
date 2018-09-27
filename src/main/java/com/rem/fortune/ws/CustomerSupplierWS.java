@@ -3,7 +3,6 @@ package com.rem.fortune.ws;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rem.fortune.model.CustomerSupplier;
-import com.rem.fortune.service.CustomerSupplierService;
+import com.rem.fortune.ws.service.CustomerSupplierService;
 
 @RestController
 @RequestMapping("/custsupp")
@@ -33,9 +32,8 @@ public class CustomerSupplierWS {
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
 	@RequestMapping(value="/create",method=RequestMethod.POST)
 	@ResponseBody
-	public CustomerSupplier create(@RequestBody CustomerSupplier custSupp) {
-		customerSupplierService.create(custSupp);
-		return custSupp;
+	public ResponseEntity create(@RequestBody CustomerSupplier custSupp) {
+		return customerSupplierService.create(custSupp);
 	}
 
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })

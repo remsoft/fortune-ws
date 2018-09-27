@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rem.fortune.model.Coa;
-import com.rem.fortune.service.CoaService;
+import com.rem.fortune.ws.service.CoaService;
 
 @RestController
 @RequestMapping("/coa")

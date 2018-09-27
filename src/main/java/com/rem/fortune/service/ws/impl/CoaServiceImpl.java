@@ -1,4 +1,4 @@
-package com.rem.fortune.service.impl;
+package com.rem.fortune.service.ws.impl;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import com.rem.fortune.dao.CoaDao;
 import com.rem.fortune.dao.DivisionDao;
 import com.rem.fortune.dao.SupplierDao;
 import com.rem.fortune.model.Coa;
-import com.rem.fortune.service.CoaService;
+import com.rem.fortune.ws.service.CoaService;
 
 @Service("CoaService")
 public class CoaServiceImpl implements CoaService{
