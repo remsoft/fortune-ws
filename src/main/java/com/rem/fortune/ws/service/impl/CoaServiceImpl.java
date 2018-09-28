@@ -1,4 +1,4 @@
-package com.rem.fortune.service.ws.impl;
+package com.rem.fortune.ws.service.impl;
 
 import java.util.List;
 
