@@ -15,7 +15,7 @@ import com.rem.fortune.ws.util.FortuneUtil;
 public class CustomerSupplierServiceImpl implements CustomerSupplierService{
 	@Autowired
 	private SupplierDao supplierDao;
-
+ 
 	public CustomerSupplier getById(String id){ 
 		return supplierDao.getById(Integer.valueOf(id));
 	} 

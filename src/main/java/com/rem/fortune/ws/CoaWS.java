@@ -18,18 +18,18 @@ import com.rem.fortune.ws.service.CoaService;
 @RestController
 @RequestMapping("/coa")
 public class CoaWS {
-	@Autowired
+	@Autowired  
 	CoaService coaService;
 	
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
 	@RequestMapping(value="/getall",method=RequestMethod.GET)
 	@ResponseBody
-	public List<Coa> getAllSupplier(@RequestParam(value="accType") String accType ) {
-		return coaService.getAllCoa(accType);
+	public List<Coa> getAllSupplier(@RequestParam(value="accType") String accType, @RequestParam(value="coaCd") String coaCode ) {
+		return coaService.getAllCoa(accType,coaCode);
 	}
-	
+	 
 	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
-	@RequestMapping(value="/getcoadd",method=RequestMethod.GET)
+	@RequestMapping(value="/getdd",method=RequestMethod.GET)
 	@ResponseBody
 	public Coa getCoaLevelDropDown() {
 		return coaService.getCoaLevelDropDown();
@@ -41,5 +41,20 @@ public class CoaWS {
 	public ResponseEntity<String> create(@RequestBody Coa coa) {
 		return coaService.create(coa);
 	}
+	
+	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
+	@RequestMapping(value="/update",method=RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<String> update(@RequestBody Coa coa){
+		return coaService.update(coa);
+	}
+	
+	@CrossOrigin(origins = {"http://localhost:4200","http://localhost:8080"  })
+	@RequestMapping(value="/update",method=RequestMethod.DELETE)
+	@ResponseBody
+	public ResponseEntity<String> delete(@RequestBody int id){
+		return coaService.delete(id);
+	}
+
 
 }

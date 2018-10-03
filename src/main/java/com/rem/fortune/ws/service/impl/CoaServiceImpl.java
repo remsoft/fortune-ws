@@ -3,7 +3,6 @@ package com.rem.fortune.ws.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +11,13 @@ import com.rem.fortune.dao.BranchDao;
 import com.rem.fortune.dao.CoaDao;
 import com.rem.fortune.dao.DivisionDao;
 import com.rem.fortune.dao.SupplierDao;
+import com.rem.fortune.dao.TaxDao;
 import com.rem.fortune.model.Coa;
 import com.rem.fortune.ws.service.CoaService;
+import com.rem.fortune.ws.util.FortuneUtil;
 
 @Service("CoaService")
-public class CoaServiceImpl implements CoaService{
+public class CoaServiceImpl implements CoaService{ 
 	@Autowired
 	CoaDao coaDao;
 	@Autowired
@@ -27,9 +28,11 @@ public class CoaServiceImpl implements CoaService{
 	DivisionDao divisionDao;
 	@Autowired
 	SupplierDao supplierDao;
+	@Autowired
+	TaxDao taxDao;
 	
 	@Override
-	public List<Coa> getAllCoa(String accountType) {
+	public List<Coa> getAllCoa(String accountType, String coaCd) {
 		int accTypeNo =0;
 		if("all".equals(accountType)) {
 			accTypeNo=0;
@@ -46,7 +49,7 @@ public class CoaServiceImpl implements CoaService{
 		}else if("archive".equals(accountType)) {
 			accTypeNo=6;
 		}		
-		return coaDao.getAll(accTypeNo);
+		return coaDao.getAll(accTypeNo,coaCd);
 	}
 
 	@Override
@@ -56,13 +59,28 @@ public class CoaServiceImpl implements CoaService{
 		coa.setBranches(branchDao.getAllForDropDown());
 		coa.setDivisions(divisionDao.getAllForDropDown());
 		coa.setCustSupps(supplierDao.getAllForDropDown());
+		coa.setTaxes(taxDao.getAllForDropDown());
 		return coa;
 	}
 
 	@Override
 	public ResponseEntity create(Coa coa) {
 		System.out.println(coa.toString());
-		return new ResponseEntity<>("Successfully Updated",HttpStatus.OK);
+		int size = coaDao.create(coa);
+		return FortuneUtil.generateWSResponse(size);
+	}
+
+	@Override
+	public ResponseEntity update(Coa coa) {
+		System.out.println(coa.toString());
+		int size = coaDao.update(coa);
+		return FortuneUtil.generateWSResponse(size);
+	}
+
+	@Override
+	public ResponseEntity delete(int id) {
+		int size = coaDao.delete(id);
+		return FortuneUtil.generateWSResponse(size);
 	} 
 
 }

@@ -8,7 +8,7 @@ import com.rem.fortune.model.CustomerSupplier;
 
 public interface CustomerSupplierService {
 	public CustomerSupplier getById(String id);
-	public ResponseEntity create(CustomerSupplier custSupp);
+	public ResponseEntity create(CustomerSupplier custSupp); 
 	public List<CustomerSupplier> getAllSupplier(int isCustomer);	
 	public ResponseEntity deleteById(int id);
 	public ResponseEntity update(CustomerSupplier custSup);

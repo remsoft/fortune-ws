@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 import com.rem.fortune.model.Coa;
 
 public interface CoaService {
-	public List<Coa> getAllCoa(String accountType);
-	public Coa getCoaLevelDropDown();
+	public List<Coa> getAllCoa(String accountType, String coaCd);
+	public Coa getCoaLevelDropDown(); 
 	public ResponseEntity create(Coa coa);
+	public ResponseEntity update(Coa coa); 
+	public ResponseEntity delete(int id);
 
 }
